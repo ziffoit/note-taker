@@ -1,12 +1,13 @@
-const express = require("express");
-const app = express();
+const router = require("express").Router();
 const fs = require("fs");
 const notes = require("../db/db.json");
 const uuid = require("uuid/v1");
 
-app.get("/api/notes", (req, res) => res.json(notes));
+router.get("/api/notes", (req, res) => {
+    res.json(results)
+});
 
-app.post("/api/notes", (req, res) => {
+router.post("/api/notes", (req, res) => {
     const newNote = req.body;
     newNote.id = uuid();
     notes.push(newNote);
@@ -20,9 +21,9 @@ app.post("/api/notes", (req, res) => {
     res.end();
 });
 
-app.delete(`/api/notes/:id`, (req, res) => {
+router.delete(`/api/notes/:id`, (req, res) => {
     console.log(req.params.id);
-    const id = req.params.id;
+        
     for (let i = 0; i < notes.length; i++) {
         const note = notes[i];
         if (note.id === id) {
@@ -40,4 +41,4 @@ app.delete(`/api/notes/:id`, (req, res) => {
 });
 
 // Starts the server to begin listening
-module.exports = app;
+module.exports = router;
