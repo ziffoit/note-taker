@@ -5,7 +5,7 @@ const notes = require("../db/db.json");
 const uuid = require("uuid/v1");
 
 app.get("/api/notes", (req, res) => {
-    res.json(results)
+    res.json(notes)
 });
 
 app.post("/api/notes", (req, res) => {
