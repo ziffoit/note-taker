@@ -23,7 +23,9 @@ app.post("/api/notes", (req, res) => {
 });
 
 app.delete(`/api/notes/:id`, (req, res) => {
-    console.log(req.params.id);
+    //needed to define id
+    const id = req.params.id
+    console.log(id);
         
     for (let i = 0; i < notes.length; i++) {
         const note = notes[i];
@@ -31,6 +33,7 @@ app.delete(`/api/notes/:id`, (req, res) => {
             notes.splice(i, 1);
         }
     }
+    //allowing me to have multiple notes without a database
     fs.writeFile(
         __dirname + "/../db/db.json",
         JSON.stringify(notes),
