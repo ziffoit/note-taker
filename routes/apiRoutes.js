@@ -9,9 +9,13 @@ app.get("/api/notes", (req, res) => {
 });
 
 app.post("/api/notes", (req, res) => {
+    //req.body is the note I want to save
     const newNote = req.body;
+    //uuid for adding id. universally unique identifier
     newNote.id = uuid();
+    //add new note to file
     notes.push(newNote);
+    //the note is written to the local file system because no database
     fs.writeFile(
         __dirname + "/../db/db.json",
         JSON.stringify(notes),
